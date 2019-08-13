@@ -99,9 +99,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/emailSUEditText"
-        app:layout_constraintVertical_bias="0.086" />
+        app:layout_constraintVertical_bias="0.095" />
 
     <EditText
         android:id="@+id/conPasswordSUEditText"
@@ -125,8 +126,8 @@
 
     <TextView
         android:id="@+id/genderSUTextView"
-        android:layout_width="77dp"
-        android:layout_height="33dp"
+        android:layout_width="78dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
