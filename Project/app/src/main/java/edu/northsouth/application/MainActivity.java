@@ -24,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(passRecovery);
             }
         });
+
+        TextView createAcTextView = (TextView) findViewById(R.id.createAcTextView);
+        createAcTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent signUp = new Intent(getApplicationContext(),SignUp.class);
+                startActivity(signUp);
+            }
+        });
     }
 
 
