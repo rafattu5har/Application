@@ -154,7 +154,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:checkedButton="@id/maleGRadioButton"
+        android:checkedButton="@id/maleRadioButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
@@ -163,14 +163,14 @@
         app:layout_constraintVertical_bias="0.176">
 
         <RadioButton
-            android:id="@+id/maleGRadioButton"
+            android:id="@+id/maleRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Male" />
 
         <RadioButton
-            android:id="@+id/femaleGRadioButton"
+            android:id="@+id/femaleRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
