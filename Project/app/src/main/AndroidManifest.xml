@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StoreOwnerScreen"></activity>
+        <activity android:name=".UserBusiness"></activity>
+        <activity android:name=".StoreOwnerScreen" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordRecovery" />
         <activity android:name=".MainActivity">
