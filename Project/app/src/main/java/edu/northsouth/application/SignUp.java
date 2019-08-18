@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private EditText fullNameSUEditText, userIdSUEditText, emailSUEditText, genderSUEditText, passSUEditText, cPassSUEditTExt; //Create EditText objects
     private Button signUpSUBtn; // Create Button Object
-    private TextView signInSUTextView; //Create TextView Object
+    private TextView signInSUTextView ; //Create TextView Object
     private ProgressBar progressBarSUProgressBar; // Create ProgressBar object
+
+    private RadioButton maleSURadioBtn, femaleSURadioBtn;
 
     private FirebaseAuth mAuth; // Create FireBase object for Authentication
 
@@ -35,11 +38,12 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        this.setTitle("Sign Up");
+        this.setTitle("Sign Up"); // Setting title of this screen
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+        // Initialize EditText Objects
         fullNameSUEditText = (EditText) findViewById(R.id.fullNameSUEditText);
         userIdSUEditText = (EditText) findViewById(R.id.userIdSUEditText);
         emailSUEditText = (EditText) findViewById(R.id.emailSUEditText);
@@ -47,12 +51,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         passSUEditText = (EditText) findViewById(R.id.passwordSUEditText);
         cPassSUEditTExt = (EditText) findViewById(R.id.conPasswordSUEditText);
 
+        // Initialize RadioButton objects
+        maleSURadioBtn = (RadioButton) findViewById(R.id.maleGRadioButton);
+        femaleSURadioBtn = (RadioButton) findViewById(R.id.femaleGRadioButton);
+
+        // initialize Button Objetc
         signUpSUBtn = (Button) findViewById(R.id.signUpSUBtn);
-
+        // Initialize ProgressBar Object
         progressBarSUProgressBar = (ProgressBar) findViewById(R.id.signUpProgressBar);
-
+        // Initialize TextView objetcs
         signInSUTextView = (TextView) findViewById(R.id.signInSUEextView);
 
+        // Declare on click listener to some specific objects
         signUpSUBtn.setOnClickListener(this);
         signInSUTextView.setOnClickListener(this);
 
@@ -124,13 +134,20 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             {
                 progressBarSUProgressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                // Sign in success, update UI with the signed-in user's information
-                Toast.makeText(getApplicationContext(),"Register is Successfull",Toast.LENGTH_SHORT).show();
-            } else {
-                   
-                // If sign in fails, display a message to the user.
-                    Toast.makeText(getApplicationContext(),"Register is not successfull",Toast.LENGTH_SHORT).show();
-            }
+                    // Sign in success, update UI with the signed-in user's information
+                    Toast.makeText(getApplicationContext(), "Register is Successfull", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    //Give Toast message with the email that already exist
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getApplicationContext(), "User with this email already have an account", Toast.LENGTH_SHORT).show();
+                    }
+                    //Give Toast message task is randomly is not successfull
+                    else {
+                        Toast.makeText(getApplicationContext(), "Error: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
