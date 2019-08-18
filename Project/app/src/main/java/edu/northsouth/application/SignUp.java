@@ -22,6 +22,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * THis is the class for sign Up a member using FireBase API
+ * The type Sign up.
+ *
+ * @author Tushar
+ * @version 1.00
+ */
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,17 +39,16 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     private RadioButton maleSURadioBtn, femaleSURadioBtn;
 
+
     private FirebaseAuth mAuth; // Create FireBase object for Authentication
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
         this.setTitle("Sign Up"); // Setting title of this screen
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();// mAuth comment
 
         // Initialize EditText Objects
         fullNameSUEditText = (EditText) findViewById(R.id.fullNameSUEditText);
@@ -86,9 +92,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 break;
         }
     }
-    /*
-    * register a user in FIREBASE database Existing API
-    * */
+    /**
+    * userRegister method create a user in FIREBASE database Existing API
+    *
+    * This is a method of SignUp class that is build to only create a sign up authentication in FireBase cloud server
+    * @param takes no parameter as input. Uses emailEditText and passwordEditText as default inputs
+    * @return void type return
+    */
     private void userRegister()
     {
         String email, password; // String types Email and Password variables
@@ -151,7 +161,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
-
 
     }
 }
