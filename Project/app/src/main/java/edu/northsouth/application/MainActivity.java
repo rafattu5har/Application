@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         this.setTitle("Sign In");
 
+
         //Creating the object
         userEmailSIEditText = (EditText) findViewById(R.id.userEmailSIEditText);
         userPassSIEditText = (EditText) findViewById(R.id.userPassSIEditText);
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         logInSIBtn.setOnClickListener(this);
         forgotPassSITextView.setOnClickListener(this);
         createACSITextView.setOnClickListener(this);
+
 
 
 

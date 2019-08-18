@@ -38,6 +38,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
         this.setTitle("Sign Up"); // Setting title of this screen
 
         // Initialize Firebase Auth
@@ -150,6 +151,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
+
 
     }
 }
