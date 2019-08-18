@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.setTitle("Sign In");
 
         TextView forgotPassTextView = (TextView) findViewById(R.id.forgotPassTextView);
         forgotPassTextView.setOnClickListener(new View.OnClickListener() {
