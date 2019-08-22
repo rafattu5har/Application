@@ -2,6 +2,7 @@ package edu.northsouth.application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG = "MainActivity";
 
     //Declaring the variables
     private EditText userEmailSIEditText, userPassSIEditText;
@@ -27,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private ProgressBar logInSIProgressBar;
 
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
+    //private FirebaseAuth.AuthStateListener mAuthListemer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * On click events
+     * Description: Set a on click listener for each of the touchable event
      */
     @Override
     public void onClick(View view)
@@ -67,9 +72,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             case R.id.logInSIBtn:
                 userLogIn();
+                mAuth.signOut();
+                Toast.makeText(getApplicationContext(),"Sign Out",Toast.LENGTH_SHORT);
                 break;
 
             case R.id.createAcSITextView:
+                mAuth.signOut();
                 Intent signUp = new Intent(getApplicationContext(),SignUp.class);
                 startActivity(signUp);
                 break;
@@ -82,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * userLohIn method simply log in firebase account
+     * @param Takes no parameter as input
+     */
     private void userLogIn()
     {
         String email, password; // String types Email and Password variables
@@ -127,19 +139,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task)
             {
                 logInSIProgressBar.setVisibility(View.GONE);
-                if(task.isSuccessful())
+                if(task.isComplete())
                 {
-                    finish();
-                    Intent UserBusiness = new Intent(getApplicationContext(), edu.northsouth.application.UserBusiness.class);
-                    UserBusiness.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(UserBusiness);
+                    if(task.isSuccessful())
+                    {
+                        Intent UserBusiness = new Intent(getApplicationContext(), edu.northsouth.application.UserBusiness.class);
+                        Toast.makeText(getApplicationContext(),"Log in successful",Toast.LENGTH_SHORT).show();
+                        UserBusiness.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(UserBusiness);
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(),"Incorrect Email or Password",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
                 else
                 {
-                    Toast.makeText(getApplicationContext(),"Incorrect Email or Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Error: "+task.getResult(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
+
+    /**
+     * onStart method monitor the log in state of a user
+     * @param no parameter
+     */
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    /**
+     * description: updateUI method contains codes for update of the UI on sign in state
+     * @param currentUser FirebaseUser type parameter passes
+     */
+    private void updateUI(FirebaseUser currentUser)
+    {
+        if (currentUser != null) {
+            //Code for signed in stage
+            Log.d(TAG, "onAuthStateChange:signed_in:"+currentUser.getUid());
+        } else {
+            //Code for sighned out stage
+            Log.d(TAG,"onAuthStateChange:signed_out");
+        }
+    }
+
+
 }

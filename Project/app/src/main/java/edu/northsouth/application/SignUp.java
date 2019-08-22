@@ -2,13 +2,13 @@ package edu.northsouth.application;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +21,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * THis is the class for sign Up a member using FireBase API
@@ -32,15 +34,24 @@ import com.google.firebase.auth.FirebaseUser;
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
 
-    private EditText fullNameSUEditText, userIdSUEditText, emailSUEditText, genderSUEditText, passSUEditText, cPassSUEditTExt; //Create EditText objects
+    private EditText fullNameSUEditText, emailSUEditText, passSUEditText, locationSUEditText, phnNoSuEditText; //Create EditText objects
     private Button signUpSUBtn; // Create Button Object
     private TextView signInSUTextView ; //Create TextView Object
     private ProgressBar progressBarSUProgressBar; // Create ProgressBar object
 
-    private RadioButton maleSURadioBtn, femaleSURadioBtn;
+    private RadioButton genderSuRadioButton;
+    private RadioGroup genderSURadioGroup;
 
+    private String genderSuString;
 
+    //add firebase database stuff
     private FirebaseAuth mAuth; // Create FireBase object for Authentication
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference myRef;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +59,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_sign_up);
         this.setTitle("Sign Up"); // Setting title of this screen
 
+        //declare firebase database objetcs
         mAuth = FirebaseAuth.getInstance();// mAuth comment
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+
 
         // Initialize EditText Objects
         fullNameSUEditText = (EditText) findViewById(R.id.fullNameSUEditText);
-        userIdSUEditText = (EditText) findViewById(R.id.userIdSUEditText);
         emailSUEditText = (EditText) findViewById(R.id.emailSUEditText);
-        genderSUEditText = (EditText) findViewById(R.id.genderSUEditText);
         passSUEditText = (EditText) findViewById(R.id.passwordSUEditText);
-        cPassSUEditTExt = (EditText) findViewById(R.id.conPasswordSUEditText);
+        phnNoSuEditText = (EditText) findViewById(R.id.phnNoSUEditText);
+        locationSUEditText = (EditText) findViewById(R.id.locationSUEditText);
 
         // Initialize RadioButton objects
-        maleSURadioBtn = (RadioButton) findViewById(R.id.maleGRadioButton);
-        femaleSURadioBtn = (RadioButton) findViewById(R.id.femaleGRadioButton);
+        genderSURadioGroup = (RadioGroup) findViewById(R.id.genderSURadioGroup);
+
 
         // initialize Button Objetc
         signUpSUBtn = (Button) findViewById(R.id.signUpSUBtn);
@@ -146,6 +159,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 progressBarSUProgressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
+                    addDataToDB();
                     Toast.makeText(getApplicationContext(), "Register is Successfull", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -160,7 +174,23 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     }
                 }
             }
+
+
         });
 
     }
+
+    private void addDataToDB()
+    {
+        myRef = mFirebaseDatabase.getReference("customerid");
+        genderSuRadioButton = (RadioButton) findViewById(genderSURadioGroup.getCheckedRadioButtonId());
+        CustomerId customer = new CustomerId(fullNameSUEditText.getText().toString(),emailSUEditText.getText().toString(), genderSuRadioButton.getText().toString(), locationSUEditText.getText().toString(), phnNoSuEditText.getText().toString());
+        FirebaseUser userId = mAuth.getCurrentUser();
+        String user = userId.getUid();
+        myRef.child(user).setValue(customer);
+        Toast.makeText(getApplicationContext(),"User Info Added",Toast.LENGTH_LONG).show();
+
+
+    }
+
 }
