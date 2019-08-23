@@ -42,7 +42,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private RadioButton genderSuRadioButton;
     private RadioGroup genderSURadioGroup;
 
-    private String genderSuString;
 
     //add firebase database stuff
     private FirebaseAuth mAuth; // Create FireBase object for Authentication
@@ -159,7 +158,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 progressBarSUProgressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
-                    addDataToDB();
+                    addDataToDB();// adding other user information to realtime database
                     Toast.makeText(getApplicationContext(), "Register is Successfull", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -180,10 +179,16 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * Call this method when need to add data to firebase realtime databse
+     * @param null takes no parameter
+     */
     private void addDataToDB()
     {
         myRef = mFirebaseDatabase.getReference("customerid");
+        //Check which radio gender button checked
         genderSuRadioButton = (RadioButton) findViewById(genderSURadioGroup.getCheckedRadioButtonId());
+        //Create and declare object of CustomerId
         CustomerId customer = new CustomerId(fullNameSUEditText.getText().toString(),emailSUEditText.getText().toString(), genderSuRadioButton.getText().toString(), locationSUEditText.getText().toString(), phnNoSuEditText.getText().toString());
         FirebaseUser userId = mAuth.getCurrentUser();
         String user = userId.getUid();
