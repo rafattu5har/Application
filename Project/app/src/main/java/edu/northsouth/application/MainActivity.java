@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * userLohIn method simply log in firebase account
-     * @param Takes no parameter as input
+     * @param null takes no parameter
      */
     private void userLogIn()
     {
