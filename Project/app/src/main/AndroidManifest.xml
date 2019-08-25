@@ -3,8 +3,6 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="edu.northsouth.application">
 
-    <dist:module dist:instant="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserBusiness"></activity>
+        <activity android:name=".BusinessProfile"></activity>
+        <activity android:name=".UserBusiness" />
         <activity android:name=".StoreOwnerScreen" />
         <activity android:name=".SignUp" />
         <activity android:name=".PasswordRecovery" />
@@ -24,5 +23,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <dist:module dist:instant="true" />
 
 </manifest>
