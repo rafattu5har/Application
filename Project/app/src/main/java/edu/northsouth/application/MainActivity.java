@@ -142,11 +142,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     if(task.isSuccessful())
                     {
-                        Intent Profile = new Intent(getApplicationContext(), edu.northsouth.application.BusinessProfile.class);
-                        Profile.putExtra("USER_UI_KEY",mAuth.getCurrentUser().getUid());
+                        Intent Business = new Intent(getApplicationContext(), UserBusiness.class);
+                        Business.putExtra("USER_UI_KEY",mAuth.getCurrentUser().getUid());
                         Toast.makeText(getApplicationContext(),"Log in successful",Toast.LENGTH_SHORT).show();
-                        Profile.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(Profile);
+                        Business.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(Business);
                     }
                     else
                     {
