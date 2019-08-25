@@ -2,6 +2,7 @@
 <img src="https://github.com/rafattu5har/Application/blob/master/Documentation/Android.jpg">
 </p>
 <h2 align="center">Online Store Application</h2>
+
 ## Idea:
 
  We are trying to solve the real-life problem in which people store their products in a place through App. It will be easy to find and store something. Our main goal is to serve a good and time efficient app that can help to collaborate easily between the stores and the customers.
