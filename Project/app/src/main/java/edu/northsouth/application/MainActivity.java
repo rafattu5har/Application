@@ -71,9 +71,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId())
         {
             case R.id.logInSIBtn:
-                userLogIn();
                 mAuth.signOut();
-                Toast.makeText(getApplicationContext(),"Sign Out",Toast.LENGTH_SHORT);
+                userLogIn();
                 break;
 
             case R.id.createAcSITextView:
@@ -143,10 +142,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 {
                     if(task.isSuccessful())
                     {
-                        Intent UserBusiness = new Intent(getApplicationContext(), edu.northsouth.application.UserBusiness.class);
+                        Intent Profile = new Intent(getApplicationContext(), edu.northsouth.application.BusinessProfile.class);
+                        Profile.putExtra("USER_UI_KEY",mAuth.getCurrentUser().getUid());
                         Toast.makeText(getApplicationContext(),"Log in successful",Toast.LENGTH_SHORT).show();
-                        UserBusiness.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(UserBusiness);
+                        Profile.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(Profile);
                     }
                     else
                     {

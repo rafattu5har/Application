@@ -15,18 +15,9 @@ public class CustomerId
 
     /**
      * This is constructor for CustomerId class
-     * @param name name of the user
-     * @param email email ac
-     * @param gender gender
-     * @param location location of the user
-     * @param phn_no contact no of the user
      */
-    public CustomerId(String name, String email, String gender, String location, String phn_no) {
-        this.name = name;
-        this.email = email;
-        this.gender = gender;
-        this.location = location;
-        this.phn_no = phn_no;
+    public CustomerId() {
+
     }
 
 

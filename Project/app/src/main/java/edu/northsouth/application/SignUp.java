@@ -189,7 +189,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         //Check which radio gender button checked
         genderSuRadioButton = (RadioButton) findViewById(genderSURadioGroup.getCheckedRadioButtonId());
         //Create and declare object of CustomerId
-        CustomerId customer = new CustomerId(fullNameSUEditText.getText().toString(),emailSUEditText.getText().toString(), genderSuRadioButton.getText().toString(), locationSUEditText.getText().toString(), phnNoSuEditText.getText().toString());
+        CustomerId customer = new CustomerId();
+        customer.setName(fullNameSUEditText.getText().toString());
+        customer.setEmail(emailSUEditText.getText().toString());
+        customer.setGender(genderSuRadioButton.getText().toString());
+        customer.setLocation(locationSUEditText.getText().toString());
+        customer.setPhn_no(phnNoSuEditText.getText().toString());
+
         FirebaseUser userId = mAuth.getCurrentUser();
         String user = userId.getUid();
         myRef.child(user).setValue(customer);
