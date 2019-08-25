@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 public class BusinessProfile extends AppCompatActivity {
 
     TextView showIdBPTextView, showNameBPTextView, showMailBPTextView, showGenderBPTextView, showLocationBPTextView, showPhnBPTextView;
+    ProgressBar profileBRProgressBar;
 
     private FirebaseAuth mAuth; // Create FireBase object for Authentication
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -44,9 +47,12 @@ public class BusinessProfile extends AppCompatActivity {
         showLocationBPTextView = (TextView) findViewById(R.id.showLocationBPTextView);
         showPhnBPTextView = (TextView) findViewById(R.id.showPhnBPTextView);
 
+        profileBRProgressBar = (ProgressBar) findViewById(R.id.profileBPProgressBar);
+
 
         FirebaseUser user = mAuth.getCurrentUser();
         userId = user.getUid();
+        profileBRProgressBar.setVisibility(View.VISIBLE);
         /*
 
         if(getIntent().hasExtra("USER_UI_KEY"))
@@ -78,6 +84,7 @@ public class BusinessProfile extends AppCompatActivity {
             {
                 //whwnever method is called
                 //when any data modified
+
                 showData(dataSnapshot);
             }
 
@@ -102,6 +109,7 @@ public class BusinessProfile extends AppCompatActivity {
                 showGenderBPTextView.setText(ds.getValue(CustomerId.class).getGender());
                 showLocationBPTextView.setText(ds.getValue(CustomerId.class).getLocation());
                 showPhnBPTextView.setText(ds.getValue(CustomerId.class).getPhn_no());
+                profileBRProgressBar.setVisibility(View.GONE);
 
             }
             /*
