@@ -16,6 +16,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Listing of the stores and display those to the user
+ * Clickable options
+ * Transfer information from the database
+ * @author tushar
+ * @version 1
+ */
 public class StoreList extends AppCompatActivity {
 
     private ListView storeListView;
@@ -27,6 +34,10 @@ public class StoreList extends AppCompatActivity {
     private List<Store> storeLst;
     private CustomAdapter customAdapter;
 
+    /**
+     * onCreate method for realtime activity handling for StoreList class
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +55,20 @@ public class StoreList extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is for starting and handling database activity
+     * Gives error message if fails
+     * Retrives data from database
+     */
     @Override
     protected void onStart() {
 
         myRef.addValueEventListener(new ValueEventListener() {
+            /**
+             * Take a snapShot of a database
+             * Search trhough the database for a result
+             * @param dataSnapshot
+             */
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 storeLst.clear();
@@ -62,6 +83,10 @@ public class StoreList extends AppCompatActivity {
 
             }
 
+            /**
+             * Called when canceling the database operation
+             * @param databaseError
+             */
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

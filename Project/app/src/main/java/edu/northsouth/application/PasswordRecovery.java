@@ -15,6 +15,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Recovery the password of a user if forgot
+ * Sedn email to the user for password change
+ * Database password change
+ * @author tushar
+ * @version 1
+ */
 public class PasswordRecovery extends AppCompatActivity {
 
     private EditText emailPREditText;
@@ -24,6 +31,10 @@ public class PasswordRecovery extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    /**
+     * onCreate method for realtime activity handling in this class
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +60,12 @@ public class PasswordRecovery extends AppCompatActivity {
     }
 
 
+    /**
+     * Function for password recovery
+     * Takes input from the user
+     * Give the responce to the database
+     * send email to the user
+     */
     private void passwordRecovery()
     {
         String email;

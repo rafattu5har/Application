@@ -18,6 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Retrives data of a logged in user to his profile screen
+ * Data from database
+ * @author tushar
+ * @version 1
+ */
 public class BusinessProfile extends AppCompatActivity {
 
     TextView showIdBPTextView, showNameBPTextView, showMailBPTextView, showGenderBPTextView, showLocationBPTextView, showPhnBPTextView;
@@ -30,6 +36,10 @@ public class BusinessProfile extends AppCompatActivity {
     public String userId;
     CustomerId custom = new CustomerId();
 
+    /**
+     * onCreate method for realtime activity handling in this class
+     * @param savedInstanceState for saving the type instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +107,12 @@ public class BusinessProfile extends AppCompatActivity {
 
     }
 
+    /**
+     * Dispaly the data of the authorized user to his screen
+     * Retrives data from fireBase
+     * Search the data through the database
+     * @param dataSnapshot holds a dataset for result
+     */
     private void showData(DataSnapshot dataSnapshot)
     {
         for(DataSnapshot ds : dataSnapshot.getChildren())

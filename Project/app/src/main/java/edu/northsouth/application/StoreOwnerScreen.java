@@ -15,6 +15,10 @@ public class StoreOwnerScreen extends AppCompatActivity implements View.OnClickL
 
     private Button profileStOwbtn, capacityStOwBtn, orderLogStOwBtn, productStatusStOwBtn, shippingGuyStOwBtn, paymentStatusStOwBtn, paymentMethodStOwBtn;
 
+    /**
+     * onCreate method for realtime activity handling in this class
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +35,11 @@ public class StoreOwnerScreen extends AppCompatActivity implements View.OnClickL
 
     }
 
-    @Override
     /**
      * On click listerner method controls all the actions in StoreOwner class
      * @param no parametr
      */
+    @Override
     public void onClick(View view) {
 
     }
