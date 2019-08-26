@@ -50,8 +50,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private DatabaseReference myRef;
 
 
-
-
+    /**
+     *  method for realtime activity handling in this class
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +91,10 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     }
 
+    /**
+     * On click listerner method controls all the actions in StoreOwner class
+     * @param no parametr
+     */
     @Override
     public void onClick(View view)
     {
@@ -181,6 +187,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
     /**
      * Call this method when need to add data to firebase realtime databse
+     * Add data in realtime dataabse
      * @param null takes no parameter
      */
     private void addDataToDB()

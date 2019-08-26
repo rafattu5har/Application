@@ -13,6 +13,12 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+/**
+ * This is a adapter type class for ListView
+ * Design the ListView type layout
+ * @author tushar
+ * @version 1
+ */
 public class CustomAdapter extends ArrayAdapter<Store> {
 
     private Activity context;
@@ -24,6 +30,13 @@ public class CustomAdapter extends ArrayAdapter<Store> {
         this.storeList = storeList;
     }
 
+    /**
+     * View of a dataset that holds the necessary data from the database
+     * @param position int position for the database location
+     * @param convertView view of the snapShot
+     * @param parent ViewGroup type input
+     * @return view type object that hols all the data is=n a result view
+     */
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -20,6 +20,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Manage the interface at the start of the application
+ * Log in process handles
+ * interact with the database
+ * returns necessary results
+ * @author tushar
+ * @version 1
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
@@ -34,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public FirebaseAuth mAuth;
     //private FirebaseAuth.AuthStateListener mAuthListemer;
 
+    /**
+     * onCreate method for realtime activity handling in this class
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Description: Set a on click listener for each of the touchable event
+     * Create a onClick listener for taking actions from the users and responce towards it
+     * @param view view type object pass
      */
     @Override
     public void onClick(View view)
@@ -165,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * onStart method monitor the log in state of a user
-     * @param no parameter
      */
     @Override
     public void onStart()
